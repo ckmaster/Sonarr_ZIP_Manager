@@ -36,8 +36,8 @@ namespace Sonarr_ZIP_Manager
 
         public void PushExtracted(Dictionary<string, bool> downloadFolders)
         {
-            string basePath = @"\\\\ckmasterplex\\h$\\Downloads\\";
-            //string basePath = @"H:\\Downloads\\";
+            //string basePath = @"\\\\ckmasterplex\\h$\\Downloads\\";
+            string basePath = @"H:\\Downloads\\";
             IWebRequestFactory webReqFac = new WebRequestFactory("http://ckmasterplex:8989/api");
             string urlParameters = "/command";
             string method = "POST";

@@ -43,8 +43,8 @@ namespace Sonarr_ZIP_Manager
 
         public void ExtractFile(Dictionary<string, bool> downloadFinshed)
         {
-            string basePath = @"\\ckmasterplex\h$\Downloads\";
-            //string basePath = @"H:\Downloads\";
+            //string basePath = @"\\ckmasterplex\h$\Downloads\";
+            string basePath = @"H:\Downloads\";
             foreach (KeyValuePair<string, bool> entry in downloadFinshed)
             {
                 if (entry.Value)
