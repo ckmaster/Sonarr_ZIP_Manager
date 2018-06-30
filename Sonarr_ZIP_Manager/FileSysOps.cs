@@ -41,6 +41,24 @@ namespace Sonarr_ZIP_Manager
             return null;
         }
 
+        public List<string> FindArchiveFiles(string path)
+        {
+            List<string> archiveFiles = new List<string>();
+            List<string> dirs = Directory.GetDirectories(path).ToList();
+            foreach (string dir in dirs)
+            {
+                List<string> files = Directory.GetFiles(dir).ToList();
+                foreach (string file in files)
+                {
+                    if (String.Equals(Path.GetExtension(file), ".rar"))
+                    {
+                        archiveFiles.Add(file);
+                    }
+                }
+            }
+            return archiveFiles;
+        }
+
         public void ExtractFile(Dictionary<string, bool> downloadFinshed)
         {
             //string basePath = @"\\ckmasterplex\h$\Downloads\";
@@ -53,11 +71,19 @@ namespace Sonarr_ZIP_Manager
                     if (IsFolder(path))
                     {
                         string archiveFile = FindArchiveFile(path);
+                        IProcessFactory pf = new ProcessFactory();
+                        ProcessStartInfo psi = pf.BuildProcess();
                         if (!String.IsNullOrEmpty(archiveFile))
                         {
-                            IProcessFactory pf = new ProcessFactory();
-                            ProcessStartInfo psi = pf.BuildProcess();
                             pf.ExecuteSevenZip(psi, archiveFile, path);
+                        }
+                        else
+                        {
+                            List<string> archiveFiles = FindArchiveFiles(path);
+                            foreach(string aFile in archiveFiles)
+                            {
+                                pf.ExecuteSevenZip(psi, aFile, path);
+                            }
                         }
                     }
                 }
