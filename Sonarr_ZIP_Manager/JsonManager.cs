@@ -13,7 +13,7 @@ namespace Sonarr_ZIP_Manager
         JArray DeserializeArray(string responseBody);
         List<string> SelectTokensInTopLevelJArray(JArray jsonArray, string toSelect);
         string SelectStringTokensInTopLevelJObject(JObject jsonObject, string toSelect);
-        int SelectIntTokensInTopLevelJObject(JObject jsonObject, string toSelect);
+        long SelectIntTokensInTopLevelJObject(JObject jsonObject, string toSelect);
     }
 
     public class JsonManager : IJsonManager
@@ -48,9 +48,9 @@ namespace Sonarr_ZIP_Manager
             return ((string)jsonObject.SelectToken(toSelect));
         }
 
-        int IJsonManager.SelectIntTokensInTopLevelJObject(JObject jsonObject, string toSelect)
+        long IJsonManager.SelectIntTokensInTopLevelJObject(JObject jsonObject, string toSelect)
         {
-            return ((int)jsonObject.SelectToken(toSelect));
+            return ((long)jsonObject.SelectToken(toSelect));
         }
     }
 }

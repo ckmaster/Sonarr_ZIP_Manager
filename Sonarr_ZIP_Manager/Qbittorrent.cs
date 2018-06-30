@@ -57,7 +57,7 @@ namespace Sonarr_ZIP_Manager
                 {
                     if (String.Equals(name, s))
                     {
-                        int amount_left = jManager.SelectIntTokensInTopLevelJObject(jsonObject, "amount_left");
+                        long amount_left = jManager.SelectIntTokensInTopLevelJObject(jsonObject, "amount_left");
                         if (amount_left == 0)
                         {
                             downloadFinished.Add(name, true);
