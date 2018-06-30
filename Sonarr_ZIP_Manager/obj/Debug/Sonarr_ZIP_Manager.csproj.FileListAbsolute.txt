@@ -7,3 +7,4 @@ C:\Users\ckmaster\source\repos\Sonarr_ZIP_Manager\Sonarr_ZIP_Manager\obj\Debug\S
 C:\Users\ckmaster\source\repos\Sonarr_ZIP_Manager\Sonarr_ZIP_Manager\obj\Debug\Sonarr_ZIP_Manager.csproj.CopyComplete
 C:\Users\ckmaster\source\repos\Sonarr_ZIP_Manager\Sonarr_ZIP_Manager\obj\Debug\Sonarr_ZIP_Manager.exe
 C:\Users\ckmaster\source\repos\Sonarr_ZIP_Manager\Sonarr_ZIP_Manager\obj\Debug\Sonarr_ZIP_Manager.pdb
+C:\Users\ckmaster\source\repos\Sonarr_ZIP_Manager\Sonarr_ZIP_Manager\obj\Debug\Sonarr_ZIP_Manager.csprojAssemblyReference.cache

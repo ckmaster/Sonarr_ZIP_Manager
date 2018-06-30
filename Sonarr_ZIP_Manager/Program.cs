@@ -22,40 +22,47 @@ namespace Sonarr_ZIP_Manager
             thread.Start();
         }
 
-        //public void Run(string[] args)
-        //{
-            
-        //}
-
         public static void Actions()
         {
             while (true)
             {
-                Sonarr sonarr = new Sonarr();
-                IWebResponseFactory wrf = new WebResponseFactory(sonarr.QueuedItems());
-                string responseBody = wrf.GetResponseBody(wrf.ExecuteRequest());
-                IJsonManager jm = new JsonManager();
-                JArray jsonArray = jm.DeserializeArray(responseBody);
-                List<string> downloadFolders = sonarr.GetDownloadFolders(jsonArray);
-                Qbittorrent qbt = new Qbittorrent();
-                Dictionary<string, bool> downloadFinished = qbt.CheckDownloadStatus(downloadFolders);
-                qbt.Logout();
-                FileSysOps fso = new FileSysOps();
-                fso.ExtractFile(downloadFinished);
-                sonarr.PushExtracted(downloadFinished);
+                SonarrActions();
+                RadarrActions();
                 Thread.Sleep(600000);
             }
         }
 
-        //protected override void OnStart(string[] args)
-        //{
-        //    Program prog = new Program();
-        //}
+        static void SonarrActions()
+        {
+            Sonarr sonarr = new Sonarr();
+            IWebResponseFactory webRespFac = new WebResponseFactory(sonarr.QueuedItems());
+            string responseBody = webRespFac.GetResponseBody(webRespFac.ExecuteRequest());
+            IJsonManager jm = new JsonManager();
+            JArray jsonArray = jm.DeserializeArray(responseBody);
+            List<string> downloadFolders = sonarr.GetDownloadFolders(jsonArray);
+            Qbittorrent qbt = new Qbittorrent();
+            Dictionary<string, bool> downloadFinished = qbt.CheckDownloadStatus(downloadFolders);
+            qbt.Logout();
+            FileSysOps fso = new FileSysOps();
+            fso.ExtractFile(downloadFinished);
+            sonarr.PushExtracted(downloadFinished);
+        }
 
-        //protected override void OnStop()
-        //{
-
-        //}
+        static void RadarrActions()
+        {
+            Radarr radarr = new Radarr();
+            IWebResponseFactory webRespFac = new WebResponseFactory(radarr.QueuedItems());
+            string responseBody = webRespFac.GetResponseBody(webRespFac.ExecuteRequest());
+            IJsonManager jm = new JsonManager();
+            JArray jsonArray = jm.DeserializeArray(responseBody);
+            List<string> downloadFolders = radarr.GetDownloadFolders(jsonArray);
+            Qbittorrent qbt = new Qbittorrent();
+            Dictionary<string, bool> downloadFinished = qbt.CheckDownloadStatus(downloadFolders);
+            qbt.Logout();
+            FileSysOps fso = new FileSysOps();
+            fso.ExtractFile(downloadFinished);
+            radarr.PushExtracted(downloadFinished);
+        }
 
         static void Main(string[] args)
         {

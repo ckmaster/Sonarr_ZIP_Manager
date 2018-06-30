@@ -10,21 +10,21 @@ using Newtonsoft.Json.Linq;
 
 namespace Sonarr_ZIP_Manager
 {
-    public class Sonarr
+    class Radarr
     {
-        public Sonarr()
+        public Radarr()
         {
-         
+
         }
 
         public HttpWebRequest QueuedItems()
         {
-            IWebRequestFactory webReqFac = new WebRequestFactory("http://ckmasterplex:8989/api");
+            IWebRequestFactory webReqFac = new WebRequestFactory("http://ckmasterplex:7878/api");
             string urlParameters = "/queue";
             string method = "GET";
             List<string[]> headers = new List<string[]>();
             headers.Add(new string[] { "Accept", "application/json" });
-            headers.Add(new string[] { "X-Api-Key", "e2ddb6b1b3e046bdab2a9a494a5a4d0c" });
+            headers.Add(new string[] { "X-Api-Key", "8f2ef9d3b271487fb399baa0c3715814" });
             return webReqFac.BuildRequest(urlParameters, method, headers);
         }
 
@@ -38,13 +38,13 @@ namespace Sonarr_ZIP_Manager
         {
             //string basePath = @"\\\\ckmasterplex\\h$\\Downloads\\";
             string basePath = @"H:\\Downloads\\";
-            IWebRequestFactory webReqFac = new WebRequestFactory("http://ckmasterplex:8989/api");
+            IWebRequestFactory webReqFac = new WebRequestFactory("http://ckmasterplex:7878/api");
             string urlParameters = "/command";
             string method = "POST";
             string contentType = "application/json";
             List<string[]> headers = new List<string[]>();
-            headers.Add(new string[] { "X-Api-Key", "e2ddb6b1b3e046bdab2a9a494a5a4d0c" });
-            foreach(KeyValuePair<string, bool> entry in downloadFolders)
+            headers.Add(new string[] { "X-Api-Key", "8f2ef9d3b271487fb399baa0c3715814" });
+            foreach (KeyValuePair<string, bool> entry in downloadFolders)
             {
                 string path = $@"{basePath}{entry.Key}";
                 string body =
