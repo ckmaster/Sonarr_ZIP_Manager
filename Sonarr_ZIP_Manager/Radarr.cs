@@ -51,7 +51,7 @@ namespace Sonarr_ZIP_Manager
                 $@"
                 {{
                     ""importMode"": ""move"",
-                    ""name"": ""downloadedEpisodesScan"",
+                    ""name"": ""downloadedMoviesScan"",
                     ""path"": ""{path}""
                 }}
                 ";
